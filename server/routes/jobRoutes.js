@@ -1,0 +1,13 @@
+const express = require('express');
+const { createJob, getJobs, getJobById } = require('../controllers/jobController');
+const { protect } = require('../middleware/authMiddleware');
+const router = express.Router();
+
+router.route('/')
+    .get(getJobs)
+    .post(protect, createJob);
+
+router.route('/:id')
+    .get(getJobById);
+
+module.exports = router;
